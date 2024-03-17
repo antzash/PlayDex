@@ -7,7 +7,9 @@ const axiosCreate = axios.create({
 
 const getGenreList = axiosCreate.get("/genres?key=" + key);
 
-const getAllGames = axiosCreate.get("/games?key=" + key);
+const getAllGames = () => {
+  return axiosCreate.get("games?key=" + key);
+};
 const getGamesbyGenreID = (id) =>
   axiosCreate.get("games?key=" + key + "&genres=" + id);
 

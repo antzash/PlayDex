@@ -18,12 +18,14 @@ function GenreList({ genreId, selectedGenreName }) {
 
   return (
     <div>
-      <h2 className="text-[30px] font-bold dark:text-white">Genres</h2>
+      <h2 className="text-[30px] mb-5 font-bold dark:text-white">Genres</h2>
       {genreList.map((item, index) => (
         <div
           key={index}
-          className={`group flex gap-2 items-center mb-2 cursor-pointer hover:bg-green-700 p-2 rounded-lg transition ease-in-out duration-300 hover:dark:bg-green-700 ${
-            activeIndex === index ? "bg-green-700 dark:bg-green-700" : null
+          className={`group flex gap-2 items-center mb-2 cursor-pointer hover:bg-green-700 p-2 rounded-lg transition ease-in-out duration-300 hover:text-white  ${
+            activeIndex === index
+              ? "text-white bg-green-700 dark:bg-green-700"
+              : null
           }`}
           onClick={() => {
             setActiveIndex(index);

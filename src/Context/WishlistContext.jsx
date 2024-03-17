@@ -24,10 +24,25 @@ export const WishlistProvider = ({ children }) => {
     return wishlist.some((item) => item.id === itemId);
   };
 
+  // Function to udpate the game status
+  const updateGameStatus = (gameId, newStatus) => {
+    setWishlist(
+      wishlist.map((game) =>
+        game.id === gameId ? { ...game, status: newStatus } : game
+      )
+    );
+  };
+
   // provdie wishlist state and functions to child components
   return (
     <WishlistContext.Provider
-      value={{ wishlist, addToWishlist, removeFromWishlist, isInWishlist }}
+      value={{
+        wishlist,
+        addToWishlist,
+        removeFromWishlist,
+        isInWishlist,
+        updateGameStatus,
+      }}
     >
       {children}
     </WishlistContext.Provider>

@@ -15,6 +15,7 @@ function Header() {
   return (
     <div className="flex items-center p-3">
       <img
+        className="transition-transform duration-300 ease-in-out transform hover:scale-110 cursor-pointer"
         src={logo}
         width={60}
         height={60}
@@ -22,17 +23,18 @@ function Header() {
           navigate("/");
         }}
       />
-      <div className="flex bg-slate-200 p-2 w-full mx-5 rounded-full items-center">
-        <CiSearch />
-        <input
-          type="text"
-          placeholder="Search Games"
-          className="px-2 bg-transparent outline-none"
-        />
+      <div
+        className={`flex p-2 w-full mx-5 rounded-full items-center justify-center ${
+          theme === "dark"
+            ? "bg-green-700 bg-opacity-50 text-white"
+            : "bg-slate-200 text-green-700"
+        }`}
+      >
+        <span className="text-[25px] font-bold">PlayDex</span>
       </div>
       <div>
         <IoHeart
-          className="text-red-500 text-4xl p-1 rounded-full bg-slate-100"
+          className="text-red-500 text-4xl p-1 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-110 cursor-pointer"
           onClick={() => {
             setToggle(!toggle);
             navigate("/wishlist"); // Navigate to Wishlist page on click
@@ -42,7 +44,7 @@ function Header() {
       <div>
         {theme == "light" ? (
           <GoSun
-            className="text-black text-4xl mx-2 p-1.5 rounded-full bg-slate-100 cursor-pointer"
+            className="text-black text-4xl mx-2 p-1.5 rounded-full cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-110 "
             onClick={() => {
               setTheme("dark");
               localStorage.setItem("theme", "dark");
@@ -50,7 +52,7 @@ function Header() {
           />
         ) : (
           <FaMoon
-            className="text-black text-4xl mx-2 p-1.5 rounded-full bg-slate-100 cursor-pointer"
+            className="text-white text-4xl mx-2 p-1.5 rounded-full bg-black cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-110 "
             onClick={() => {
               setTheme("light");
               localStorage.setItem("theme", "light");

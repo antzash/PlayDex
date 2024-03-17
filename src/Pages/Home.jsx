@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import GenreList from "../Components/GenreList";
 import GlobalApi from "../Services/GlobalApi";
 import Banner from "../Components/Banner";
 import GamesByGenreId from "../Components/GamesByGenreId";
+import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import { WishlistContext } from "../Context/WishlistContext"; // Import WishlistContext
 
 function Home() {
   const [allGamesList, setAllGamesList] = useState([]);
   const [gamesListbyGenres, setGameListbyGenres] = useState([]);
   const [selectedGenreName, setSelectedGenreName] = useState("Action");
-  const [currentGameIndex, setCurrentGameIndex] = useState(0); // New state for the current game index
+  const [currentGameIndex, setCurrentGameIndex] = useState(0);
+
+  const { addToWishlist } = useContext(WishlistContext); // Use WishlistContext
 
   useEffect(() => {
     getAllGamesList();
@@ -16,28 +20,33 @@ function Home() {
   }, []);
 
   const getAllGamesList = () => {
-    GlobalApi.getAllGames.then((resp) => {
+    GlobalApi.getAllGames().then((resp) => {
       setAllGamesList(resp.data.results);
     });
   };
 
   const getGameListbyGenreId = (id) => {
     GlobalApi.getGamesbyGenreID(id).then((resp) => {
-      console.log("Game List by GenreId", resp.data.results);
       setGameListbyGenres(resp.data.results);
     });
   };
 
-  // Function to handle next game
   const handleNextGame = () => {
     setCurrentGameIndex((prevIndex) => (prevIndex + 1) % allGamesList.length);
   };
 
-  // Function to handle previous game
   const handlePreviousGame = () => {
     setCurrentGameIndex(
       (prevIndex) => (prevIndex - 1 + allGamesList.length) % allGamesList.length
     );
+  };
+
+  // Function to handle adding a game to the wishlist
+  const handleAddToWishlist = () => {
+    const gameToAdd = allGamesList[currentGameIndex];
+    if (gameToAdd) {
+      addToWishlist(gameToAdd);
+    }
   };
 
   return (
@@ -52,12 +61,24 @@ function Home() {
         {allGamesList?.length > 0 && gamesListbyGenres.length > 0 ? (
           <div>
             <Banner gameBanner={allGamesList[currentGameIndex]} />
-            <div className="flex justify-between mt-4">
-              <button onClick={handlePreviousGame} className="mb-4">
-                Previous
+            <div className="flex justify-between items-center mt-4">
+              <button
+                onClick={handlePreviousGame}
+                className="text-white mb-4 transition-transform duration-300 ease-in-out transform hover:scale-110 bg-green-600 rounded-full p-2"
+              >
+                <MdNavigateBefore className="text-2xl" />
               </button>
-              <button onClick={handleNextGame} className="mb-4">
-                Next 
+              <button
+                className="mb-4 bg-green-700 text-[15px] text-white p-3 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-110 bg-green-600 rounded-full p-2"
+                onClick={handleAddToWishlist}
+              >
+                Add to Wishlist
+              </button>
+              <button
+                onClick={handleNextGame}
+                className="text-white mb-4 transition-transform duration-300 ease-in-out transform hover:scale-110 bg-green-600 rounded-full p-2"
+              >
+                <MdNavigateNext className="text-2xl" />
               </button>
             </div>
             <GamesByGenreId

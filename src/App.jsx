@@ -16,7 +16,6 @@ function App() {
   }, []);
 
   useEffect(() => {});
-
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <div
@@ -25,6 +24,8 @@ function App() {
         } min-h-screen`}
       >
         <WishlistProvider>
+          {" "}
+          {/* Wrap your app with SearchProvider */}
           <Router>
             <Header />
             <Routes>
@@ -37,5 +38,4 @@ function App() {
     </ThemeContext.Provider>
   );
 }
-
 export default App;
