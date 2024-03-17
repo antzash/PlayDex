@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { WishlistContext } from "../Context/WishlistContext";
 import { FaMinus } from "react-icons/fa";
 

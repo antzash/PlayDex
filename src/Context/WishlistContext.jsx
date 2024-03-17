@@ -14,17 +14,18 @@ export const WishlistProvider = ({ children }) => {
     }
   };
 
-  // function to remove
+  // function to remove item from wishlist
   const removeFromWishlist = (itemId) => {
     setWishlist(wishlist.filter((item) => item.id !== itemId));
     console.log("Game Removed from Wishlist:", itemId);
   };
+
   // function to check if item is in wishlist
   const isInWishlist = (itemId) => {
     return wishlist.some((item) => item.id === itemId);
   };
 
-  // Function to udpate the game status
+  // Function to update the game status
   const updateGameStatus = (gameId, newStatus) => {
     setWishlist(
       wishlist.map((game) =>
@@ -33,7 +34,7 @@ export const WishlistProvider = ({ children }) => {
     );
   };
 
-  // provdie wishlist state and functions to child components
+  // provide wishlist state and functions to child components
   return (
     <WishlistContext.Provider
       value={{
