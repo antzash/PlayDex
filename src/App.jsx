@@ -7,15 +7,17 @@ import { WishlistProvider } from "./Context/WishlistContext";
 import Home from "./Pages/Home";
 
 function App() {
-  const [count, setCount] = useState(0);
+  // State for theme
   const [theme, setTheme] = useState("light");
+
+  // Effect to set theme from local storage on component mount
   useEffect(() => {
     setTheme(
       localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"
     );
   }, []);
 
-  useEffect(() => {});
+  // Main component that provides theme context and wraps the app with WishlistProvider
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <div
@@ -25,7 +27,6 @@ function App() {
       >
         <WishlistProvider>
           {" "}
-          {/* Wrap your app with SearchProvider */}
           <Router>
             <Header />
             <Routes>

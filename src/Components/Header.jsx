@@ -8,9 +8,13 @@ import { ThemeContext } from "../Context/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
+  // State for toggle
   const [toggle, setToggle] = useState(true);
+  // Use context to access theme and setTheme function
   const { theme, setTheme } = useContext(ThemeContext);
   const navigate = useNavigate(); // Initialize useNavigate
+
+  // Render the header with logo, theme toggle, and wishlist button
 
   return (
     <div className="flex items-center p-3">

@@ -1,36 +1,43 @@
+// Import necessary React hooks and components
 import React, { useEffect, useState, useContext } from "react";
 import GenreList from "../Components/GenreList";
 import GlobalApi from "../Services/GlobalApi";
 import Banner from "../Components/Banner";
 import GamesByGenreId from "../Components/GamesByGenreId";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
-import { WishlistContext } from "../Context/WishlistContext"; // Import WishlistContext
+import { WishlistContext } from "../Context/WishlistContext";
 
 function Home() {
+  // State for all games list, games list by genres, selected genre name, and current game index
   const [allGamesList, setAllGamesList] = useState([]);
   const [gamesListbyGenres, setGameListbyGenres] = useState([]);
   const [selectedGenreName, setSelectedGenreName] = useState("Action");
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
 
-  const { addToWishlist } = useContext(WishlistContext); // Use WishlistContext
+  // Use context to access addToWishlist function
+  const { addToWishlist } = useContext(WishlistContext);
 
+  // Effect to fetch all games and games by genre ID on component mount
   useEffect(() => {
     getAllGamesList();
     getGameListbyGenreId(4);
   }, []);
 
+  // Function to fetch all games
   const getAllGamesList = () => {
     GlobalApi.getAllGames().then((resp) => {
       setAllGamesList(resp.data.results);
     });
   };
 
+  // Function to fetch games by genre ID
   const getGameListbyGenreId = (id) => {
     GlobalApi.getGamesbyGenreID(id).then((resp) => {
       setGameListbyGenres(resp.data.results);
     });
   };
 
+  // Functions to navigate through games
   const handleNextGame = () => {
     setCurrentGameIndex((prevIndex) => (prevIndex + 1) % allGamesList.length);
   };
@@ -41,7 +48,7 @@ function Home() {
     );
   };
 
-  // Function to handle adding a game to the wishlist
+  // Function to add current game to wishlist
   const handleAddToWishlist = () => {
     const gameToAdd = allGamesList[currentGameIndex];
     if (gameToAdd) {
@@ -49,6 +56,7 @@ function Home() {
     }
   };
 
+  // Render the home page with genre list, banner, and games by genre ID
   return (
     <div className="grid grid-cols-4 px-5">
       <div className="h-full hidden md:block">
