@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 
-// function component definition, takes a prop gameBanner passed down to Home.jsx
 function Banner({ gameBanner }) {
-  // empty useeffect with empty function and dependency array to take effect once component mounts
   useEffect(() => {}, []);
 
   return (
