@@ -10,18 +10,31 @@ const AirtableBase = new Airtable({
 // Function to add games to airtable
 const addGameToAirtable = async (game, status) => {
   try {
-    await AirtableBase("Wishlist").create([
-      {
-        fields: {
-          "Game Name": game.name,
-          Status: game.status || "Not Bought",
-          "Background Image": game.background_image,
-          "Parent Platforms": game.parent_platforms
-            .map((platform) => platform.platform.name)
-            .join(", "),
+    const existingGames = await fetchGamesFromAirtable();
+
+    // Check if the game already exists in the Airtable base
+    const isDuplicate = existingGames.some(
+      (existingGame) => existingGame.name === game.name
+    );
+
+    // If the game does not exist, add it to Airtable
+    if (!isDuplicate) {
+      await AirtableBase("Wishlist").create([
+        {
+          fields: {
+            "Game Name": game.name,
+            Status: game.status || "Not Bought",
+            "Background Image": game.background_image,
+            "Parent Platforms": game.parent_platforms
+              .map((platform) => platform.platform.name)
+              .join(", "),
+          },
         },
-      },
-    ]);
+      ]);
+      console.log("Game added to Airtable:", game.name);
+    } else {
+      console.log("Game already exists in Airtable:", game.name);
+    }
   } catch (error) {
     console.error("Error adding game to Airtable:", error);
   }
