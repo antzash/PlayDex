@@ -2,13 +2,23 @@ import React, { useContext, useMemo, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { WishlistContext } from "../Context/WishlistContext";
 import Modal from "./Modal";
+import { fetchGamesFromAirtable } from "../Services/AirtableBase";
 
 function GamesByGenreId({ gameList, selectedGenreName }) {
   const { addToWishlist } = useContext(WishlistContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleAddtoWishlist = (item) => {
-    addToWishlist(item);
-    console.log("Game added to wishlist", item);
+  const handleAddtoWishlist = async (item) => {
+    const existingGames = await fetchGamesFromAirtable();
+    const isGameInAirtable = existingGames.some(
+      (game) => game.name === item.name
+    );
+
+    if (!isGameInAirtable) {
+      addToWishlist(item);
+      console.log("Game added to wishlist", item);
+    } else {
+      console.log("Game is already in Airtable");
+    }
   };
 
   return (
