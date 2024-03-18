@@ -14,15 +14,14 @@ const addGameToAirtable = async (game, status) => {
       {
         fields: {
           "Game Name": game.name,
-          Status: status,
+          Status: game.status || "Not Played",
           "Background Image": game.background_image,
           "Parent Platforms": game.parent_platforms
             .map((platform) => platform.platform.name)
-            .join(", "), // Add this line
+            .join(", "),
         },
       },
     ]);
-    console.log("Game added to Airtable:", game.name);
   } catch (error) {
     console.error("Error adding game to Airtable:", error);
   }
@@ -58,13 +57,18 @@ const removeGameFromAirtable = async (recordId) => {
 
 // Function to update a game's status in Airtable
 const updateGameStatusInAirtable = async (recordId, newStatus) => {
+  console.log(
+    `Attempting to update game status in Airtable. Record ID: ${recordId}, New Status: ${newStatus}`
+  );
   try {
     await AirtableBase("Wishlist").update(recordId, {
       Status: newStatus,
     });
-    console.log("Game status updated in Airtable:", recordId);
+    console.log(
+      `Game status updated in Airtable successfully. Record ID: ${recordId}, New Status: ${newStatus}`
+    );
   } catch (error) {
-    console.error("Error updating game status in Airtable:", error);
+    console.error(`Error updating game status in Airtable: ${error.message}`);
   }
 };
 
