@@ -105,9 +105,7 @@ function Home() {
           </h2>
           <hr />
           <p className="mt-5 text-[15px] text-black">
-            Your game has been successfully added to your wishlist. Click the
-            heart on the header to view your wishlist and view your wishlisted
-            games.
+            Your game has been successfully added to your wishlist.
           </p>
         </div>
       </Modal>
