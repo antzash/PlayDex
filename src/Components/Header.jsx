@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import logo from "./../assets/Images/mainLogo.png";
-import { CiSearch } from "react-icons/ci";
+
 import { IoHeart } from "react-icons/io5";
 import { GoSun } from "react-icons/go";
 import { FaMoon } from "react-icons/fa";
@@ -42,6 +42,7 @@ function Header() {
           onClick={() => {
             setToggle(!toggle);
             navigate("/wishlist"); // Navigate to Wishlist page on click
+            window.location.reload();
           }}
         />
       </div>
