@@ -43,7 +43,7 @@ const Wishlist = () => {
               <div className="flex space-x-2 mt-2">
                 <button
                   className={`px-3 py-1 text-[16px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
-                    item.status === "Not Played"
+                    item.status === "Not Bought"
                       ? "bg-yellow-500"
                       : "bg-green-900"
                   }`}
