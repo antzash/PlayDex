@@ -31,14 +31,27 @@ const addGameToAirtable = async (game, status) => {
 const fetchGamesFromAirtable = async () => {
   try {
     const records = await AirtableBase("Wishlist").select().all();
-    return records.map((record) => ({
-      id: record.id,
-      name: record.get("Game Name"),
-      status: record.get("Status"),
-      background_image: record.get("Background Image"),
+    return records.map((record) => {
+      // Assuming "Parent Platforms" is a string of platform names separated by commas
+      const parentPlatformsString = record.get("Parent Platforms");
+      // Split the string into an array of platform names
+      const parentPlatformsNames = parentPlatformsString
+        ? parentPlatformsString.split(", ")
+        : [];
 
-      // Add other fields as necessary
-    }));
+      // Map the array of platform names to an array of objects with a `platform` property
+      const parentPlatforms = parentPlatformsNames.map((name) => ({
+        platform: { name },
+      }));
+
+      return {
+        id: record.id,
+        name: record.get("Game Name"),
+        status: record.get("Status"),
+        background_image: record.get("Background Image"),
+        parent_platforms: parentPlatforms, // This is now an array of objects with a `platform` property
+      };
+    });
   } catch (error) {
     console.error("Error fetching games from Airtable:", error);
     return [];
