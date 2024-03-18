@@ -15,7 +15,6 @@ export const WishlistProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(!isModalOpen);
   const [errorMessage, setErrorMessage] = useState("");
-  const setError = (message) => setErrorMessage(message);
 
   useEffect(() => {
     const loadGames = async () => {
@@ -32,7 +31,6 @@ export const WishlistProvider = ({ children }) => {
       const updatedItem = { ...item, status: "Not Bought" };
       setWishlist([...wishlist, updatedItem]);
       await addGameToAirtable(updatedItem);
-      toggleModal(); // Toggle the modal to open it
     } else {
       setErrorMessage("Game is already in wishlist");
     }

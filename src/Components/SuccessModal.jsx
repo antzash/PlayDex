@@ -1,7 +1,6 @@
-// Modal.jsx
 import React from "react";
 
-function Modal({ isOpen, onClose, children }) {
+function SuccessModal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (
@@ -29,4 +28,4 @@ function Modal({ isOpen, onClose, children }) {
   );
 }
 
-export default Modal;
+export default SuccessModal;

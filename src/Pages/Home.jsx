@@ -6,7 +6,6 @@ import Banner from "../Components/Banner";
 import GamesByGenreId from "../Components/GamesByGenreId";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { WishlistContext } from "../Context/WishlistContext";
-import Modal from "../Components/Modal";
 
 function Home() {
   // State for all games list, games list by genres, selected genre name, and current game index
@@ -50,14 +49,6 @@ function Home() {
     );
   };
 
-  // Function to add current game to wishlist
-  const handleAddToWishlist = () => {
-    const gameToAdd = allGamesList[currentGameIndex];
-    if (gameToAdd) {
-      addToWishlist(gameToAdd);
-    }
-  };
-
   // Render the home page with genre list, banner, and games by genre ID
   return (
     <div className="grid grid-cols-4 px-5">
@@ -79,12 +70,6 @@ function Home() {
                 <MdNavigateBefore className="text-2xl" />
               </button>
               <button
-                className="mb-4 bg-green-700 text-[15px] text-white p-3 rounded-full transition-transform duration-300 ease-in-out transform hover:scale-110 bg-green-600 rounded-full p-2"
-                onClick={handleAddToWishlist}
-              >
-                Add to Wishlist
-              </button>
-              <button
                 onClick={handleNextGame}
                 className="text-white mb-4 transition-transform duration-300 ease-in-out transform hover:scale-110 bg-green-600 rounded-full p-2"
               >
@@ -98,17 +83,6 @@ function Home() {
           </div>
         ) : null}
       </div>
-      <Modal isOpen={isModalOpen} onClose={toggleModal}>
-        <div className="text-left">
-          <h2 className="text-[20px] text-green-700 font-bold mb-2">
-            Game Added Successfully!
-          </h2>
-          <hr />
-          <p className="mt-5 text-[15px] text-black">
-            Your game has been successfully added to your wishlist.
-          </p>
-        </div>
-      </Modal>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React, { useContext, useMemo, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { WishlistContext } from "../Context/WishlistContext";
-import Modal from "./Modal";
+import SuccessModal from "./SuccessModal";
+
 import { fetchGamesFromAirtable } from "../Services/AirtableBase";
 import ErrorModal from "./ErrorModal";
 
@@ -9,6 +10,8 @@ function GamesByGenreId({ gameList, selectedGenreName }) {
   const { addToWishlist } = useContext(WishlistContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false); // New state for SuccessModal
+
   const handleAddtoWishlist = async (item) => {
     const existingGames = await fetchGamesFromAirtable();
     const isGameInAirtable = existingGames.some(
@@ -18,9 +21,9 @@ function GamesByGenreId({ gameList, selectedGenreName }) {
     if (!isGameInAirtable) {
       addToWishlist(item);
       console.log("Game added to wishlist", item);
+      setIsSuccessModalOpen(true); // Open SuccessModal
     } else {
       console.log("Game is already in Airtable");
-      setModalMessage("Game is already in Wishlist!");
       setIsModalOpen(true);
     }
   };
@@ -29,11 +32,34 @@ function GamesByGenreId({ gameList, selectedGenreName }) {
     setIsModalOpen(false);
   };
 
+  const closeSuccessModal = () => {
+    setIsSuccessModalOpen(false); // Close SuccessModal
+  };
+
   return (
     <div>
       <ErrorModal isOpen={isModalOpen} onClose={closeModal}>
-        <p>{modalMessage}</p>
+        <div className="bg-white rounded-xl">
+          <h2 className="text-[27px] font-semibold text-red-700">
+            Game already in the wishlist
+          </h2>
+          <hr />
+          <p className="mt-4 text-[15px] text-black">
+            This game is already in the wishlist. Try adding other games or view
+            your wishlist to see what games you have already addded!
+          </p>
+        </div>
       </ErrorModal>
+      <SuccessModal isOpen={isSuccessModalOpen} onClose={closeSuccessModal}>
+        <div className="bg-white rounded-xl">
+          <h2 className="text-[27px] font-semibold text-green-700">
+            Game Added to Wishlist!
+          </h2>
+          <p className="mt-4 text-[15px] text-black">
+            This game has been added to your wishlist!
+          </p>
+        </div>
+      </SuccessModal>
       <div className="md:grid md:grid-cols-3 lg:grid-cols-3 gap-4 mt-5">
         {gameList.map((item) => {
           const platformStr = useMemo(() => {
