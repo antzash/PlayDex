@@ -1,16 +1,31 @@
 import React, { useContext, useMemo, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { WishlistContext } from "../Context/WishlistContext";
+import Modal from "./Modal";
 
 function GamesByGenreId({ gameList, selectedGenreName }) {
   const { addToWishlist } = useContext(WishlistContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const handleAddtoWishlist = (item) => {
     addToWishlist(item);
     console.log("Game added to wishlist", item);
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close the modal
   };
 
   return (
     <div>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <h2 className="text-lg font-medium text-gray-900">
+          Game Added to Wishlist
+        </h2>
+        <p className="mt-2 text-sm text-gray-500">
+          The game has been successfully added to your wishlist.
+        </p>
+      </Modal>
       <h2 className="font-bold text-[30px] text-green-700 w-full mt-5">
         {selectedGenreName} Games
       </h2>
