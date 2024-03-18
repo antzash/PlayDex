@@ -38,6 +38,10 @@ function GamesByGenreId({ gameList, selectedGenreName }) {
 
   return (
     <div>
+      <h2 className="text-[40px] text-green-700 font-bold text-left my-4">
+        {selectedGenreName}
+      </h2>
+      <hr className="mb-2" />
       <ErrorModal isOpen={isModalOpen} onClose={closeModal}>
         <div className="bg-white rounded-xl">
           <h2 className="text-[27px] font-semibold text-red-700">
