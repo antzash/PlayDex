@@ -47,7 +47,7 @@ const Wishlist = () => {
                       ? "bg-yellow-500"
                       : "bg-green-900"
                   }`}
-                  onClick={() => updateGameStatus(item.id, "Not Played")}
+                  onClick={() => updateGameStatus(item.id, "Not Bought")}
                 >
                   Not Bought
                 </button>

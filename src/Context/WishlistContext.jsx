@@ -25,7 +25,7 @@ export const WishlistProvider = ({ children }) => {
   // function to add item to wishlist
   const addToWishlist = async (item) => {
     if (!wishlist.some((wishlistItem) => wishlistItem.id === item.id)) {
-      const updatedItem = { ...item, status: "Not Played" };
+      const updatedItem = { ...item, status: "Not Bought" };
       setWishlist([...wishlist, updatedItem]);
       await addGameToAirtable(updatedItem);
     }
