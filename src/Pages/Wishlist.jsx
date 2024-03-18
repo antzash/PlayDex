@@ -33,16 +33,16 @@ const Wishlist = () => {
             <img
               src={item.background_image}
               alt={item.name}
-              className="w-64 h-auto rounded-l-lg object-cover"
+              className="w-[300px] h-[150px] rounded-l-lg object-cover"
             />
             <div className="p-2 flex flex-col justify-start">
-              <h2 className="text-[20px] text-black font-bold">{item.name}</h2>
-              <p className="text-[10px] text-white font-light">
+              <h2 className="text-[25px] text-black font-bold">{item.name}</h2>
+              <p className="p-2 text-[15px] text-white font-light">
                 {getPlatformString(item.parent_platforms)}
               </p>
               <div className="flex space-x-2 mt-2">
                 <button
-                  className={`px-3 py-1 rounded hover:scale-110 transition-all duration-300 ease-in-out ${
+                  className={`px-3 py-1 text-[20px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
                     item.status === "Not Played"
                       ? "bg-yellow-500"
                       : "bg-green-900"
@@ -52,7 +52,7 @@ const Wishlist = () => {
                   Not Played
                 </button>
                 <button
-                  className={`px-3 py-1 rounded hover:scale-110 transition-all duration-300 ease-in-out ${
+                  className={`px-3 py-1 text-[20px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
                     item.status === "Played" ? "bg-cyan-500" : "bg-green-900"
                   }`}
                   onClick={() => updateGameStatus(item.id, "Played")}
@@ -60,7 +60,7 @@ const Wishlist = () => {
                   Played
                 </button>
                 <button
-                  className={`px-3 py-1 rounded hover:scale-110 transition-all duration-300 ease-in-out ${
+                  className={`px-3 py-1 text-[20px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
                     item.status === "Repeat" ? "bg-lime-500" : "bg-green-900"
                   }`}
                   onClick={() => updateGameStatus(item.id, "Repeat")}
@@ -68,7 +68,7 @@ const Wishlist = () => {
                   Repeat
                 </button>
                 <button
-                  className={`px-3 py-1 rounded hover:scale-110 transition-all duration-300 ease-in-out ${
+                  className={`px-3 py-1 text-[20px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
                     item.status === "Wait for Sale"
                       ? "bg-rose-500"
                       : "bg-green-900"
@@ -78,7 +78,7 @@ const Wishlist = () => {
                   Wait for Sale
                 </button>
                 <button
-                  className={`px-3 py-1 rounded hover:scale-110 transition-all duration-300 ease-in-out ${
+                  className={`px-3 py-1 text-[20px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
                     item.status === "Not My Thing"
                       ? "bg-red-700"
                       : "bg-green-900"
