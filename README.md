@@ -25,6 +25,13 @@ https://play-dex.vercel.app/
 - **Wishlist Management**: Add games to your wishlist, update their status, and view your wishlist.
 - **Dark Mode Support**: Enjoy the app in both light and dark modes.
 
+## Next Features
+
+- **Custom Wishlists**: Add your own custom wishlists to add games based on parameters or keywords set by you
+- **Sorting Functions**: Be able to sort games by platforms, alphabetical order and by date of release
+- **Game Information**: Click the game card to view more information about the game (Trailers, screenshots, descriptions etc.)
+- **Search Function**: Search the games you want according to your keywords
+
 ## Getting Started
 
 To get a local copy up and running, follow these steps:
