@@ -14,7 +14,7 @@ const addGameToAirtable = async (game, status) => {
       {
         fields: {
           "Game Name": game.name,
-          Status: game.status || "Not Played",
+          Status: game.status || "Not Bought",
           "Background Image": game.background_image,
           "Parent Platforms": game.parent_platforms
             .map((platform) => platform.platform.name)

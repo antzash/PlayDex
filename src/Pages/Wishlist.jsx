@@ -42,17 +42,17 @@ const Wishlist = () => {
               </p>
               <div className="flex space-x-2 mt-2">
                 <button
-                  className={`px-3 py-1 text-[20px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
+                  className={`px-3 py-1 text-[16px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
                     item.status === "Not Played"
                       ? "bg-yellow-500"
                       : "bg-green-900"
                   }`}
                   onClick={() => updateGameStatus(item.id, "Not Played")}
                 >
-                  Not Played
+                  Not Bought
                 </button>
                 <button
-                  className={`px-3 py-1 text-[20px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
+                  className={`px-3 py-1 text-[16px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
                     item.status === "Played" ? "bg-cyan-500" : "bg-green-900"
                   }`}
                   onClick={() => updateGameStatus(item.id, "Played")}
@@ -60,7 +60,7 @@ const Wishlist = () => {
                   Played
                 </button>
                 <button
-                  className={`px-3 py-1 text-[20px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
+                  className={`px-3 py-1 text-[16px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
                     item.status === "Repeat" ? "bg-lime-500" : "bg-green-900"
                   }`}
                   onClick={() => updateGameStatus(item.id, "Repeat")}
@@ -68,7 +68,7 @@ const Wishlist = () => {
                   Repeat
                 </button>
                 <button
-                  className={`px-3 py-1 text-[20px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
+                  className={`px-3 py-1 text-[16px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
                     item.status === "Wait for Sale"
                       ? "bg-rose-500"
                       : "bg-green-900"
@@ -78,7 +78,7 @@ const Wishlist = () => {
                   Wait for Sale
                 </button>
                 <button
-                  className={`px-3 py-1 text-[20px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
+                  className={`px-3 py-1 text-[16px] rounded-full hover:scale-110 transition-all duration-300 ease-in-out ${
                     item.status === "Not My Thing"
                       ? "bg-red-700"
                       : "bg-green-900"
