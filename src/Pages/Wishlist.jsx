@@ -8,11 +8,16 @@ const Wishlist = () => {
   console.log("Current wishlist:", wishlist);
 
   const getPlatformString = (platforms) => {
-    const platformStr = platforms.map((each) => each.platform.name).join(", ");
-    if (platformStr.length > 30) {
-      return platformStr.substring(0, 30) + "...";
+    if (platforms && platforms.length > 0) {
+      const platformStr = platforms
+        .map((each) => each.platform.name)
+        .join(", ");
+      if (platformStr.length > 30) {
+        return platformStr.substring(0, 30) + "...";
+      }
+      return platformStr;
     }
-    return platformStr;
+    return "";
   };
   return (
     <div className="container mx-auto px-4">
