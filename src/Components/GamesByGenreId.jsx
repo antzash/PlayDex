@@ -9,26 +9,10 @@ function GamesByGenreId({ gameList, selectedGenreName }) {
   const handleAddtoWishlist = (item) => {
     addToWishlist(item);
     console.log("Game added to wishlist", item);
-    setIsModalOpen(true); // Open the modal
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false); // Close the modal
   };
 
   return (
     <div>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <h2 className="text-lg font-medium text-gray-900">
-          Game Added to Wishlist
-        </h2>
-        <p className="mt-2 text-sm text-gray-500">
-          The game has been successfully added to your wishlist.
-        </p>
-      </Modal>
-      <h2 className="font-bold text-[30px] text-green-700 w-full mt-5">
-        {selectedGenreName} Games
-      </h2>
       <div className="md:grid md:grid-cols-3 lg:grid-cols-3 gap-4 mt-5">
         {gameList.map((item) => {
           const platformStr = useMemo(() => {

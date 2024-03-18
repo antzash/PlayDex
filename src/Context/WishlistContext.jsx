@@ -12,8 +12,8 @@ export const WishlistContext = createContext();
 export const WishlistProvider = ({ children }) => {
   // initialise wishlist state
   const [wishlist, setWishlist] = useState([]);
-
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   useEffect(() => {
     const loadGames = async () => {
@@ -30,6 +30,7 @@ export const WishlistProvider = ({ children }) => {
       const updatedItem = { ...item, status: "Not Bought" };
       setWishlist([...wishlist, updatedItem]);
       await addGameToAirtable(updatedItem);
+      toggleModal(); // Toggle the modal to open it
     } else {
       setErrorMessage("Game is already in wishlist");
     }
@@ -88,6 +89,8 @@ export const WishlistProvider = ({ children }) => {
         removeFromWishlist,
         isInWishlist,
         updateGameStatus,
+        isModalOpen, // Add the modal visibility state
+        toggleModal, // Add the function to toggle the modal
       }}
     >
       {children}

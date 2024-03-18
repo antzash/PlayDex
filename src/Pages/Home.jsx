@@ -6,6 +6,7 @@ import Banner from "../Components/Banner";
 import GamesByGenreId from "../Components/GamesByGenreId";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { WishlistContext } from "../Context/WishlistContext";
+import Modal from "../Components/Modal";
 
 function Home() {
   // State for all games list, games list by genres, selected genre name, and current game index
@@ -13,6 +14,7 @@ function Home() {
   const [gamesListbyGenres, setGameListbyGenres] = useState([]);
   const [selectedGenreName, setSelectedGenreName] = useState("Action");
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
+  const { isModalOpen, toggleModal } = useContext(WishlistContext);
 
   // Use context to access addToWishlist function
   const { addToWishlist } = useContext(WishlistContext);
@@ -96,6 +98,19 @@ function Home() {
           </div>
         ) : null}
       </div>
+      <Modal isOpen={isModalOpen} onClose={toggleModal}>
+        <div className="text-left">
+          <h2 className="text-[20px] text-green-700 font-bold mb-2">
+            Game Added Successfully!
+          </h2>
+          <hr />
+          <p className="mt-5 text-[15px] text-black">
+            Your game has been successfully added to your wishlist. Click the
+            heart on the header to view your wishlist and view your wishlisted
+            games.
+          </p>
+        </div>
+      </Modal>
     </div>
   );
 }
