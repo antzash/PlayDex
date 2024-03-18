@@ -13,6 +13,8 @@ export const WishlistProvider = ({ children }) => {
   // initialise wishlist state
   const [wishlist, setWishlist] = useState([]);
 
+  const [errorMessage, setErrorMessage] = useState(null);
+
   useEffect(() => {
     const loadGames = async () => {
       const games = await fetchGamesFromAirtable();
@@ -28,6 +30,8 @@ export const WishlistProvider = ({ children }) => {
       const updatedItem = { ...item, status: "Not Bought" };
       setWishlist([...wishlist, updatedItem]);
       await addGameToAirtable(updatedItem);
+    } else {
+      setErrorMessage("Game is already in wishlist");
     }
   };
 
@@ -55,14 +59,14 @@ export const WishlistProvider = ({ children }) => {
   };
 
   // Function to update the game status
-  const updateGameStatus = async (gameId, newStatus) => {
+  const updateGameStatus = async (itemId, newStatus) => {
     // Assuming you have a way to find the game object by its ID
-    const game = wishlist.find((item) => item.id === gameId);
+    const game = wishlist.find((item) => item.id === itemId);
     if (game) {
       // Update the game's status in your local state
       setWishlist(
         wishlist.map((item) =>
-          item.id === gameId ? { ...item, status: newStatus } : item
+          item.id === itemId ? { ...item, status: newStatus } : item
         )
       );
       // Update the game's status in Airtable
