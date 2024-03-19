@@ -14,7 +14,6 @@ export const WishlistProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(!isModalOpen);
-  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const loadGames = async () => {

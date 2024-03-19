@@ -13,7 +13,6 @@ function Home() {
   const [gamesListbyGenres, setGameListbyGenres] = useState([]);
   const [selectedGenreName, setSelectedGenreName] = useState("Action");
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
-  const { isModalOpen, toggleModal } = useContext(WishlistContext);
 
   // Use context to access addToWishlist function
   const { addToWishlist } = useContext(WishlistContext);

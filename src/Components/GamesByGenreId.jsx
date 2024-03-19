@@ -9,7 +9,6 @@ import ErrorModal from "./ErrorModal";
 function GamesByGenreId({ gameList, selectedGenreName }) {
   const { addToWishlist } = useContext(WishlistContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false); // New state for SuccessModal
 
   const handleAddtoWishlist = async (item) => {
