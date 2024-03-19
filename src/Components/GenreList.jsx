@@ -15,7 +15,6 @@ function GenreList({ genreId, selectedGenreName }) {
   const getGenreList = () => {
     // responsible for fetching genre list from api through GlobalApi.
     GlobalApi.getGenreList.then((resp) => {
-      console.log(resp.data.results);
       setGenreList(resp.data.results);
     });
   };

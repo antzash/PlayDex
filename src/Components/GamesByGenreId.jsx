@@ -19,10 +19,9 @@ function GamesByGenreId({ gameList, selectedGenreName }) {
 
     if (!isGameInAirtable) {
       addToWishlist(item);
-      console.log("Game added to wishlist", item);
+
       setIsSuccessModalOpen(true); // Open SuccessModal
     } else {
-      console.log("Game is already in Airtable");
       setIsModalOpen(true);
     }
   };

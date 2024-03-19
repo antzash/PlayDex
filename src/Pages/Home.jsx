@@ -14,9 +14,6 @@ function Home() {
   const [selectedGenreName, setSelectedGenreName] = useState("Action"); // store name of selected genre
   const [currentGameIndex, setCurrentGameIndex] = useState(0); // keep track of game being displayed in banner
 
-  // Use context to access addToWishlist function
-  const { addToWishlist } = useContext(WishlistContext);
-
   // Effect to fetch all games and games by genre ID (4 being action) on component mount
   useEffect(() => {
     getAllGamesList(); // fetch all games

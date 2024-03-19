@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 
 function TrendingGames({ gameList }) {
-  useEffect(() => {
-    console.log(gameList);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
