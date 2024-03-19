@@ -60,10 +60,9 @@ export const WishlistProvider = ({ children }) => {
 
   // Function to update the game status
   const updateGameStatus = async (itemId, newStatus) => {
-    // Assuming you have a way to find the game object by its ID
     const game = wishlist.find((item) => item.id === itemId);
     if (game) {
-      // Update the game's status in your local state
+      // Update the game's status in local state
       setWishlist(
         wishlist.map((item) =>
           item.id === itemId ? { ...item, status: newStatus } : item
@@ -88,8 +87,8 @@ export const WishlistProvider = ({ children }) => {
         removeFromWishlist,
         isInWishlist,
         updateGameStatus,
-        isModalOpen, // Add the modal visibility state
-        toggleModal, // Add the function to toggle the modal
+        isModalOpen,
+        toggleModal,
       }}
     >
       {children}

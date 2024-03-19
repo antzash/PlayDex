@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 
-function Banner({ gameBanner }) {
-  useEffect(() => {}, []);
+// Banner takes prop gamebanner to display name and image. This prop is passed to Home.jsx.
 
+function Banner({ gameBanner }) {
   return (
     <div className="relative">
       <div className="absolute bottom-0 p-10 bg-gradient-to-t from-green-900 to transparent w-full rounded-lg">

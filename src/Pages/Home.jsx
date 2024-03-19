@@ -9,35 +9,35 @@ import { WishlistContext } from "../Context/WishlistContext";
 
 function Home() {
   // State for all games list, games list by genres, selected genre name, and current game index
-  const [allGamesList, setAllGamesList] = useState([]);
-  const [gamesListbyGenres, setGameListbyGenres] = useState([]);
-  const [selectedGenreName, setSelectedGenreName] = useState("Action");
-  const [currentGameIndex, setCurrentGameIndex] = useState(0);
+  const [allGamesList, setAllGamesList] = useState([]); // to store list of all games
+  const [gamesListbyGenres, setGamesListbyGenres] = useState([]); // store list of games filtered by genre
+  const [selectedGenreName, setSelectedGenreName] = useState("Action"); // store name of selected genre
+  const [currentGameIndex, setCurrentGameIndex] = useState(0); // keep track of game being displayed in banner
 
   // Use context to access addToWishlist function
   const { addToWishlist } = useContext(WishlistContext);
 
-  // Effect to fetch all games and games by genre ID on component mount
+  // Effect to fetch all games and games by genre ID (4 being action) on component mount
   useEffect(() => {
-    getAllGamesList();
-    getGameListbyGenreId(4);
+    getAllGamesList(); // fetch all games
+    getGameListbyGenreId(4); //  action games on component mount
   }, []);
 
-  // Function to fetch all games
+  // Function to fetch all games from API and updated allGamesList
   const getAllGamesList = () => {
     GlobalApi.getAllGames().then((resp) => {
       setAllGamesList(resp.data.results);
     });
   };
 
-  // Function to fetch games by genre ID
+  // Function to fetch games by genre ID and update gamesListbyGenres
   const getGameListbyGenreId = (id) => {
     GlobalApi.getGamesbyGenreID(id).then((resp) => {
-      setGameListbyGenres(resp.data.results);
+      setGamesListbyGenres(resp.data.results);
     });
   };
 
-  // Functions to navigate through games
+  // Functions to navigate through games incremenet currentGameINdex and decerease through games in allGamesList
   const handleNextGame = () => {
     setCurrentGameIndex((prevIndex) => (prevIndex + 1) % allGamesList.length);
   };

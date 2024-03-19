@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import GlobalApi from "../Services/GlobalApi";
 
+// used in Home.jsx where its rendered in a div element.
+
 function GenreList({ genreId, selectedGenreName }) {
-  const [genreList, setGenreList] = useState([]);
-  const [activeIndex, setActiveIndex] = useState(0);
+  // both props to update GenreID when clicked and update the name
+  const [genreList, setGenreList] = useState([]); // state variable to hold list of genres fetched by API. empty at first
+  const [activeIndex, setActiveIndex] = useState(0); // keeps track of currently active genre index in list chosen by user
 
   useEffect(() => {
     getGenreList();
   }, []);
 
   const getGenreList = () => {
+    // responsible for fetching genre list from api through GlobalApi.
     GlobalApi.getGenreList.then((resp) => {
       console.log(resp.data.results);
       setGenreList(resp.data.results);
