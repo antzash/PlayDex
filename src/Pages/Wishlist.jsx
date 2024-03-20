@@ -5,7 +5,6 @@ import { FaMinus } from "react-icons/fa";
 const Wishlist = () => {
   const { wishlist, removeFromWishlist, updateGameStatus } =
     useContext(WishlistContext);
-  console.log("Current wishlist:", wishlist);
 
   const getPlatformString = (platforms) => {
     if (platforms && platforms.length > 0) {
